@@ -1,35 +1,55 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import PropTypes from 'prop-types'
+import JumbotronItem from './JumbotronItem';
 
 export default class HomePage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            articles: [],
+            loading: false,
+            page: 1
+        }
+    }
+
+    async componentDidMount() {
+        let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=bbb834e150f94d98a99926735643660f&page=1&pageSize=9`;
+        let data = await fetch(url);
+        let parsedData = await data.json();
+        // console.log(parsedData);
+        this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults })
+    }
     render() {
         return (
             <div>
-                <section>
+                {/* <section>
                     <h3>Hello</h3>
                     <div className='container' style={{ width: "40rem" }}>
-
-                        <div className="jumbotron">
-                            <img src="" alt="" />
-                            <h1 className="display-4">Hello, world!</h1>
-                            <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                            <hr className="my-4" />
-                            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                            <p className="lead">
-                                <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                            </p>
-                        </div>
+                    <div className="jumbotron">
+                    <img src={this.setState.articles.imageUrl ? this.setState.articles.imageUrl : ""} alt="" />
+                    <h1 className="display-4">{this.state.articles.title?  this.state.articles.title : ""}</h1>
+                    <p className="lead">{this.state.articles.imageUrl ? this.state.articles.description : ""}</p>
+                    <hr className="my-4" />
+                    <p className="lead">
+                        <a className="btn btn-primary btn-lg" href={this.setState.articles.imageUrl ?this.setState.articles.newsUrl: ""} role="button">Learn more</a>
+                    </p>
+                </div>
                     </div>
-                </section>
+                </section> */}
                 <section className='d-flex container justify-content-center align-item-center'>
 
                     <div className="container my-3">
                         <h2>NewsMeds Top Headlines</h2>
                         <div className="row">
-                
+                            {this.state.articles.map((element) => {
+
+                                return <div className="col-md-4" key={element.url}>
+                                    <NewsItem title={element.title ? element.title.slice(0, 45) : " "} description={element.description ? element.description.slice(0, 88) : " "} imageUrl={element.urlToImage} newsUrl={element.url} />
+                                </div>
+                            })}
                         </div>
-    
+
                     </div>
                 </section>
             </div>
