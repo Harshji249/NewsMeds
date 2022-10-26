@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login';
 import fire from './components/fire';
 import { useState,useEffect } from 'react';
 import HomePage from './components/HomePage';
@@ -78,8 +79,24 @@ const clearErrors=()=>{
    },[])
   return (
     <>
-    <Navbar/>
-    <HomePage/>
+    {user ? (
+      <>
+      <Navbar handleLogout={handleLogout}/>
+      <HomePage/>
+      </>
+    ) :(
+      <Login email={email} 
+    setEmail={setEmail} 
+    password ={password} 
+    setPassword={setPassword} 
+    handleLogin={handleLogin}
+    handleSignup={handleSignup}
+    hasAccount={hasAccount}
+    setHasAccount={setHasAccount}
+    emailError ={setEmailError}
+    passowrdError={setPasswordError}
+    />
+    )}
     </>
   );
 }
