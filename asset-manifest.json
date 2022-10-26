@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/NewsMeds/static/css/main.444911d7.css",
+    "main.js": "/NewsMeds/static/js/main.18377d05.js",
+    "static/js/787.fde93906.chunk.js": "/NewsMeds/static/js/787.fde93906.chunk.js",
+    "index.html": "/NewsMeds/index.html",
+    "main.444911d7.css.map": "/NewsMeds/static/css/main.444911d7.css.map",
+    "main.18377d05.js.map": "/NewsMeds/static/js/main.18377d05.js.map",
+    "787.fde93906.chunk.js.map": "/NewsMeds/static/js/787.fde93906.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.444911d7.css",
+    "static/js/main.18377d05.js"
+  ]
+}
