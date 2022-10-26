@@ -5,6 +5,11 @@ import fire from './components/fire';
 import { useState,useEffect } from 'react';
 import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [user,setUser] = useState("");
@@ -28,7 +33,7 @@ const clearErrors=()=>{
     fire
       .auth()
       .signInWithEmailAndPassword(email,password)
-      .catch((err) =>{
+      .catch(err =>{
         switch(err.code){
           case "auth/invalid-email":
           case "auth/user-disabled":
@@ -81,8 +86,21 @@ const clearErrors=()=>{
     <>
     {user ? (
       <>
-      <Navbar handleLogout={handleLogout}/>
-      <HomePage/>
+      <Router>
+      <div>
+        <Navbar handleLogout={handleLogout}/>
+        <Routes>
+          <Route exact  path="/" element={<HomePage key="general" country="in" category  ="general"/> }></Route>
+          <Route exact  path="/Business" element={<HomePage key="business" country="in" category  ="business"/> }></Route>
+          <Route exact  path="/Entertainment" element={<HomePage key="entertainment" country="in" category  ="entertainment"/>}> </Route>
+          <Route exact  path="/General" element={<HomePage key="general" country="in" category  ="general"/> }></Route>
+          <Route exact  path="/Health" element={<HomePage key="health" country="in" category  ="health"/> }></Route>
+          <Route exact  path="/Science" element={<HomePage key="science" country="in" category  ="science"/> }></Route>
+          <Route exact  path="/Sports" element={<HomePage key="sports" country="in" category  ="sports"/>}> </Route>
+          <Route exact  path="/Technology" element={<HomePage key="technology" country="in" category  ="technology"/> }></Route>
+        </Routes>
+      </div>
+        </Router>
       </>
     ) :(
       <Login email={email} 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
-import PropTypes from 'prop-types'
-import JumbotronItem from './JumbotronItem';
+// import PropTypes from 'prop-types'
+// import JumbotronItem from './JumbotronItem';
 import Jumbotron from './Jumbotron';
 
 export default class HomePage extends Component {
@@ -15,7 +15,7 @@ export default class HomePage extends Component {
     }
 
     async componentDidMount() {
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=bbb834e150f94d98a99926735643660f&page=1&pageSize=9`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bbb834e150f94d98a99926735643660f&page=1&pageSize=9`;
         let data = await fetch(url);
         let parsedData = await data.json();
         // console.log(parsedData);
@@ -23,7 +23,7 @@ export default class HomePage extends Component {
     }
     handlePrevClick= async()=>{
         console.log("Previous was clicked");
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=bbb834e150f94d98a99926735643660f&page=${this.state.page-1}&pageSize=9`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bbb834e150f94d98a99926735643660f&page=${this.state.page-1}&pageSize=9`;
         let data = await fetch(url);
         let parsedData= await data.json();
         this.setState({
@@ -38,7 +38,7 @@ export default class HomePage extends Component {
         }
         else{
 
-            let url = `https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=bbb834e150f94d98a99926735643660f&page=${this.state.page+1}&pageSize=9`;
+            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bbb834e150f94d98a99926735643660f&page=${this.state.page+1}&pageSize=9`;
             let data = await fetch(url);
             let parsedData= await data.json();
             // console.log(parsedData);
