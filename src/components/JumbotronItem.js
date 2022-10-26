@@ -5,8 +5,8 @@ export default class JumbotronItem extends Component {
         let {title, description,imageUrl,newsUrl} = this.props;
         return (
                 <div className="jumbotron">
-                    <img  style={{width: "80rem"}} src={imageUrl} alt="" />
-                    <h1 className="display-4">{title}</h1>
+                    <img className="d-flex justify-content-center" style={{width: "40rem"}} src={imageUrl} alt="" />
+                    <h3 className="display-4">{title}</h3>
                     <p className="lead">{description}</p>
                     <hr className="my-4" />
                     <p className="lead">
